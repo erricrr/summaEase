@@ -9,11 +9,11 @@ Key Enhancements:
 * Transcription and Summarization: Integrated functionality to transcribe audio files and generate summaries using OpenAI's Whisper library and Google's Gemini API.
 * Copy-Paste Functionality: Introduced buttons to enable users to easily copy and paste both the transcription and summarized text.
 * Image-to-Text Conversion: Using PyTesseract and OpenCV, added the ability to convert images containing text into text format for processing.
-	* (app.py, upload_image()), hyperparameters 178, 255 in cv2.threshold(gray, 178, 255, cv2.THRESH_BINARY)[1] are set for a specific set of images, hence, they may not reproduce the same results with other images
+	* (```app.py```, ```upload_image()``` function), hyperparameters 178, 255 in ```cv2.threshold(gray, 178, 255, cv2.THRESH_BINARY)[1]``` are set for a specific set of images, hence, they may not reproduce the same results with other images
 
 This application is designed for local deployment and is optimized to function within Google Chrome. While it may be possible to access the application using other browsers or operating systems, certain features and functionalities may be limited or unavailable.
 
 ## Usage 
 * Locate the file named ```config.ini```
 * Add your Gemini API token to ```config.ini```
-* Run the app with ```flask run`
+* Run the app with ```flask run```
