@@ -3068,8 +3068,8 @@ textarea.form-control-lg {
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #012b36; /*Changed*/
-  --bs-btn-border-color: #012b36; /*Changed*/
+  --bs-btn-bg: #e63b31; /*Changed*/
+  --bs-btn-border-color: #e63b31; /*Changed*/
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #012b36; /*Changed*/
   --bs-btn-hover-border-color: #f2c31a; /*Changed*/ 
