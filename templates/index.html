@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>SummaEase&mdash;automatic note taker and summarizer</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark">
+      <div class="container">
+        <!-- <a href="{{ url_for('index') }}" class="navbar-brand">SumDeezNotes</a> -->
+        <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/sumLogo.png') }}" class="d-inline-block align-top" id="logo"></a>
+
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <h1 class="visually-hidden">SummaEase</h1>
+
+        <div class="col-md-12" style="text-align: center">
+          <h2 style="margin-top: 8rem;">Transcribe and Summarize Notes</h2>
+
+          <div class="column custom-div">
+         
+            <p>To add your notes, you can:</p>
+            <ul>
+              <li>Upload an audio file or an image file with text, then select <strong>Transcribe</strong></li>
+              <li>Or <strong>enter text</strong>, type in, or cut &amp; paste</li>
+              <li>Or <strong>record</strong> your voice</li>
+            
+            </ul>
+            <p>When done, select <strong>Summarize</strong> to see an AI generated summary of your notes.</p>
+
+            </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Transcribe .mp3/.wav file</h3>
+              <form action="{{ url_for('upload_audio') }}" method="POST" enctype="multipart/form-data" onsubmit="showUploading()">
+                <input type="file" style="cursor: pointer;" class="form-control-file" name="audio_file" accept="audio/*" capture onchange="enableTranscribeButton('upload', 'audio_file')">
+                <br>
+                <button type="submit" style="margin-top: 2rem;" class="btn btn-primary" id="upload" disabled>Transcribe</button>
+                <button class="btn btn-primary" id="uploading" type="button" style="display: none;" disabled>
+                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Transcribing file &hellip; </button>
+              </form>
+              <h3>Transcribe Image .jpg/.png file</h3>
+              <form action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data" onsubmit="showUploadingImg()">
+                <input type="file" style="cursor: pointer;" class="form-control-file" name="image_file" accept="image/*" capture onchange="enableTranscribeButton('uploadImg', 'image_file')">
+                <br>
+                <button type="submit" style="margin-top: 2rem;" class="btn btn-primary" id="uploadImg" disabled>Transcribe</button>
+                <button class="btn btn-primary" id="uploadingImg" type="button" style="display: none;" disabled>
+                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Transcribing file &hellip; </button>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <h3>Paste or Record notes here</h3>
+              <form action="{{ url_for('summary') }}" method="POST" onsubmit="showLoadingButton()">
+                <img id="recordButton" src="static/img/record.svg" height="64px" width="64px" style="cursor: pointer;" onclick="toggleRecording()">
+                <textarea id="textInput" class="form-control" type="text" name="transcript" rows="15" placeholder="Paste notes here">{{ transcription }}</textarea>
+                <button type="submit" name="submitButton"  class="btn btn-primary" id="submitButton" {% if disable_summarize_button %}disabled{% endif %}>Summarize</button>
+                <button class="btn btn-primary" type="button" id="loadingButton" disabled style="display: none;">
+
+
+
+
+                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Generating Notes &hellip; </button>
+              </form>
+              <button aria-label="CopyText" title="CopyText" id="copyButton" class="btn btn-outline-secondary" onclick="copyToClipboardTrans()"> Copy Transcription </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12"> {% if summary != "" %} <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">AI Generated Notes:</h5>
+              <md-block id="summaryBlock">{{ summary }}</md-block>
+              <button id="copyButtonSum" class="btn btn-outline-secondary" onclick="copyToClipboardSum()">Copy Summary</button>
+            </div>
+          </div> {% endif %} </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/copyPaste_buttons.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/record.js') }}"></script>
+  </body>
+</html>
