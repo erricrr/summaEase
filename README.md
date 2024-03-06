@@ -1,7 +1,7 @@
 # summaEase
  Transcribe and Summarize Notes (AI generated summary)
 
-This project leverages Flask, Bootstrap, and GeminiPro 1.0 to construct a comprehensive AI-driven note-taking application, building upon the foundational work of troplaflemme (https://github.com/KhanradCoder/troplaflemme) by Adam Eubanks (https://github.com/KhanradCoder). I would like to acknowledge Mr. Eubanks's contributions and express my gratitude for providing the foundation for SummaEase.
+This project leverages Flask, Bootstrap, and GeminiPro 1.0 to construct a comprehensive AI-driven note-taking application, building upon the foundational work of troplaflemme (https://github.com/KhanradCoder/troplaflemme) by **Adam Eubanks (https://github.com/KhanradCoder)**. I would like to acknowledge Mr. Eubanks's contributions and express my gratitude for providing the foundation for SummaEase.
 
 **Key Enhancements**:
 
